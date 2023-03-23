@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <section>
+            <h1>TODO App</h1>
+            <hr>
+            <form action="/create-task" method="POST">
+            <div class="description">
+            <h2>DESCRIPTION</h2>
+            <input type="text" name="task" placeholder="What do you need to do!?">
+            </div><br>
+            
+                <div class="category-class">
+                    <div class="category">
+                        <h2>Category</h2>
+                        <select name="category">
+                            <option>Choose a category</option>
+                            <option>category</option>
+                            <option>personal</option>
+                            <option>work</option>
+                            <option>office</option>
+                            <option>home</option>
+                        </select>
+                    </div>
+                    <div class="category-class due-date">
+                        <h2>Due Date</h2>
+                        <div class="date-time">
+                            <!-- <label for="birthdaytime">Birthday (date and time):</label> -->
+                            <input type="date" name="taskdate" id="birthdaytime" required>
+                            <!-- <input type="submit"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="task">
+                    <button type="submit" id="add">+ ADD TASK</button>
+                </div><br>
+                </form>
+                
+                <form action="/delete-task" method="post">
+                    <button type="submit" id="del">- DELETE TASK</button>
+                    <% for (let i of tasks){ %>
+
+                        <div class="main-row">
+                            <div class="boxes">
+                            <div class="subrow">
+                                <!-- the selected chechbox sends the id of the task to be deletd to express -->
+                                <input type="checkbox" name="<%=i._id%>" >
+                            </div>
+                            <div id="task-separate">
+                                <!-- displaying task info and time -->
+                                <p id="task-description"><%=i.task%></p>
+                                <p id="task-date"><i class="far fa-calendar-alt clndr"></i> <%=i.taskdate%></p>
+                            </div>
+                            </div>
+                            <!-- displaying task category -->
+                            <div class ="task-ctgry">
+                                <p><%=i.category%></p>
+                            </div>
+                            </div>
+                        </div>
+            
+                    <%}%>
+                </form>
+        </section>
+    </body>
+</html>
